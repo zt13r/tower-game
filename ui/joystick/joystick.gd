@@ -12,11 +12,6 @@ var bounds: PackedVector2Array = PackedVector2Array([
 	Vector2(click_area, click_area), # Bottom right
 ])
 
-var screen_size: Vector2:
-	get:
-		screen_size = get_viewport_rect().size
-		return screen_size
-
 var default_pos: Vector2 = Vector2.ZERO
 var dir: Vector2 = Vector2.ZERO
 var dragging: bool = false
@@ -24,7 +19,7 @@ var dragging: bool = false
 # Used only if "has_cooldown" is true
 var in_cooldown: bool = false
 
-var my_index: int = 0
+var touch_index: int = 0
 
 
 @onready var base: CenterContainer = $Base
@@ -44,20 +39,20 @@ func _input(event: InputEvent) -> void:
 		if event.is_pressed():
 			if _in_click_area(event.position):
 				dragging = true
-				my_index = event.index
+				touch_index = event.index
 				_reposition_joystick(event.position, event.is_pressed())
 				_control_joystick(event.position)
-		elif my_index == event.index:
+		elif touch_index == event.index:
 			_reposition_joystick(event.position, event.is_pressed())
 			_release_joystick()
 			dragging = false
 	if event is InputEventScreenDrag:
-		if dragging and my_index == event.index:
+		if dragging and touch_index == event.index:
 			_control_joystick(event.position)
 
 
 func _control_joystick(pos: Vector2) -> void:
-	stick.global_position = pos - (stick.size / 2.0)
+	stick.global_position = pos #- (stick.size / 2.0)
 	dir = stick.global_position - global_position
 
 	# Visual
@@ -87,13 +82,13 @@ func _release_joystick() -> void:
 			Tween.TRANS_EXPO)
 
 	if has_cooldown and not in_cooldown:
-		_enter_cooldown()
-		await cooldown_timer.timeout
+		await _cooldown()
 
 
-func _enter_cooldown():
+func _cooldown():
 	in_cooldown = true
 	cooldown_timer.start()
+	await cooldown_timer.timeout
 
 
 func _in_click_area(pos: Vector2) -> bool:

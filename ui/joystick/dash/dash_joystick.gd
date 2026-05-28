@@ -9,7 +9,6 @@ class_name DashJoystick extends Joystick
 
 
 func _ready() -> void:
-	#global_position.x = screen_size.x - 288.0 # Temporary (also in move_joystick)
 	super()
 	cooldown_timer.wait_time = player.dash_recharge_time
 

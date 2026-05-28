@@ -2,7 +2,6 @@ class_name MoveJoystick extends Joystick
 
 
 func _ready() -> void:
-	#global_position.x = 288.0 # Temporary (also in dash_joystick)
 	super()
 
 

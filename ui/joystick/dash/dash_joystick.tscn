@@ -10,5 +10,8 @@ has_cooldown = true
 [node name="Base" parent="." index="1" unique_id=231018845]
 self_modulate = Color(0, 1, 0, 0.35000002)
 
+[node name="Sprite" parent="Base" index="0" unique_id=379984065]
+self_modulate = Color(0, 1, 0, 0.35000002)
+
 [node name="Sprite" parent="Stick" parent_id_path=PackedInt32Array(5582385) index="0" unique_id=796522572]
 self_modulate = Color(0, 1, 0, 1)

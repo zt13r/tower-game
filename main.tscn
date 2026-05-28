@@ -42,34 +42,35 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=1607062957 node_paths=PackedStringArray("kit_slot_1", "kit_slot_2") instance=ExtResource("1_ig7tw")]
 position = Vector2(597, 448)
-kit_slot_1 = NodePath("../CanvasLayer/UI/KitStuff/KitSlots/KitSlot1")
-kit_slot_2 = NodePath("../CanvasLayer/UI/KitStuff/KitSlots/KitSlot2")
+kit_slot_1 = NodePath("../UI/Control/KitStuff/KitSlots/KitSlot1")
+kit_slot_2 = NodePath("../UI/Control/KitStuff/KitSlots/KitSlot2")
 
 [node name="Enemy" parent="." unique_id=1584016522 instance=ExtResource("3_1bvp3")]
 position = Vector2(1310, 436)
 move_speed = 500.0
 attack_distance = 350.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1541930524]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1541930524]
 
-[node name="UI" type="Control" parent="CanvasLayer" unique_id=402924171]
+[node name="Control" type="Control" parent="UI" unique_id=402924171]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="KitStuff" type="Control" parent="CanvasLayer/UI" unique_id=1900431786]
+[node name="KitStuff" type="Control" parent="UI/Control" unique_id=1900431786]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="KitChanger" parent="CanvasLayer/UI/KitStuff" unique_id=1641449536 instance=ExtResource("6_7mycd")]
+[node name="KitChanger" parent="UI/Control/KitStuff" unique_id=1641449536 instance=ExtResource("6_7mycd")]
 visible = false
 position = Vector2(1248, 768)
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/KitStuff/KitChanger" unique_id=1818219709]
+[node name="Label" type="Label" parent="UI/Control/KitStuff/KitChanger" unique_id=1818219709]
 offset_top = 8.0
 offset_right = 128.0
 offset_bottom = 120.0
@@ -79,16 +80,16 @@ change"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KitSlots" type="Node2D" parent="CanvasLayer/UI/KitStuff" unique_id=1882032321]
+[node name="KitSlots" type="Node2D" parent="UI/Control/KitStuff" unique_id=1882032321]
 visible = false
 
-[node name="KitSlot1" parent="CanvasLayer/UI/KitStuff/KitSlots" unique_id=689432236 groups=["KitSlots"] instance=ExtResource("7_272bh")]
+[node name="KitSlot1" parent="UI/Control/KitStuff/KitSlots" unique_id=689432236 groups=["KitSlots"] instance=ExtResource("7_272bh")]
 position = Vector2(1552, 488)
 
-[node name="KitSlot2" parent="CanvasLayer/UI/KitStuff/KitSlots" unique_id=1917851854 groups=["KitSlots"] instance=ExtResource("7_272bh")]
+[node name="KitSlot2" parent="UI/Control/KitStuff/KitSlots" unique_id=1917851854 groups=["KitSlots"] instance=ExtResource("7_272bh")]
 position = Vector2(1712, 488)
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/KitStuff/KitSlots" unique_id=1900371163]
+[node name="Label" type="Label" parent="UI/Control/KitStuff/KitSlots" unique_id=1900371163]
 offset_left = 1488.0
 offset_top = 376.0
 offset_right = 1776.0
@@ -98,24 +99,20 @@ text = "kit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Joysticks" type="HBoxContainer" parent="CanvasLayer/UI" unique_id=942060656]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MoveJoystick" parent="CanvasLayer/UI/Joysticks" unique_id=1104781509 instance=ExtResource("4_1bvp3")]
-layout_mode = 2
+[node name="MoveJoystick" parent="UI/Control" unique_id=1104781509 instance=ExtResource("4_1bvp3")]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 811.0
+offset_right = 318.0
+offset_bottom = 811.0
 size_flags_horizontal = 3
 
-[node name="CenterArea" type="Control" parent="CanvasLayer/UI/Joysticks" unique_id=1128759370]
-layout_mode = 2
+[node name="DashJoystick" parent="UI/Control" unique_id=374660230 node_paths=PackedStringArray("player") instance=ExtResource("5_lquwl")]
+layout_mode = 0
+offset_left = 1602.0
+offset_top = 811.0
+offset_right = 1602.0
+offset_bottom = 811.0
 size_flags_horizontal = 3
-
-[node name="DashJoystick" parent="CanvasLayer/UI/Joysticks" unique_id=374660230 node_paths=PackedStringArray("player") instance=ExtResource("5_lquwl")]
-layout_mode = 2
-size_flags_horizontal = 3
-player = NodePath("../../../../Player")
+player = NodePath("../../../Player")
 click_area = 128.0
