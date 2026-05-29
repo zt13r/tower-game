@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bbgwghw3gnl5f" path="res://ui/joystick/dash/dash_joystick.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cr1dmt2kdqbq" path="res://ui/kit_changer/kit_changer.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ffv2qbemconk" path="res://ui/kits/kit_slot.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://btlu3iodsdf2h" path="res://ui/joystick/attack/basic/basic_attack_joystick.tscn" id="8_5vw27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(128, 128)
@@ -42,8 +43,16 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=1607062957 node_paths=PackedStringArray("kit_slot_1", "kit_slot_2") instance=ExtResource("1_ig7tw")]
 position = Vector2(597, 448)
+move_speed = null
+dash_speed = null
+dash_distance = null
+dash_duration = null
+dash_cooldown = null
+basic_attack_cooldown = null
 kit_slot_1 = NodePath("../UI/Control/KitStuff/KitSlots/KitSlot1")
 kit_slot_2 = NodePath("../UI/Control/KitStuff/KitSlots/KitSlot2")
+health = null
+attack_damage = null
 
 [node name="Enemy" parent="." unique_id=1584016522 instance=ExtResource("3_1bvp3")]
 position = Vector2(1310, 436)
@@ -104,10 +113,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 318.0
-offset_top = -269.0
-offset_right = 318.0
-offset_bottom = -269.0
+offset_left = 320.0
+offset_top = -320.0
+offset_right = 320.0
+offset_bottom = -320.0
 grow_vertical = 0
 size_flags_horizontal = 3
 
@@ -118,12 +127,27 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -318.0
-offset_top = -269.0
-offset_right = -318.0
-offset_bottom = -269.0
+offset_left = -608.9999
+offset_top = -319.99994
+offset_right = -606.9999
+offset_bottom = -319.99994
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 3
 player = NodePath("../../../Player")
 click_area = 128.0
+
+[node name="BasicAttackJoystick" parent="UI/Control" unique_id=1876497017 instance=ExtResource("8_5vw27")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -263.0
+offset_top = -320.0
+offset_right = -263.0
+offset_bottom = -320.0
+grow_horizontal = 0
+grow_vertical = 0

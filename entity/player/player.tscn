@@ -24,7 +24,12 @@ shape = SubResource("RectangleShape2D_e6ar1")
 [node name="Camera" type="Camera2D" parent="." index="2" unique_id=1414970345]
 position_smoothing_enabled = true
 
-[node name="StateLabel" type="Label" parent="." index="3" unique_id=2044777302]
+[node name="Hurtbox" parent="." index="3" unique_id=160118446 instance=ExtResource("4_bgq54")]
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" index="0" unique_id=2108373255]
+shape = SubResource("RectangleShape2D_bgq54")
+
+[node name="StateLabel" type="Label" parent="." index="4" unique_id=2044777302]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,13 +45,13 @@ theme_override_font_sizes/font_size = 35
 text = "state"
 horizontal_alignment = 1
 
-[node name="DashCooldownTimer" type="Timer" parent="." index="4" unique_id=535413562]
+[node name="Timers" type="Node" parent="." index="5" unique_id=2059658890]
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers" index="0" unique_id=535413562]
 wait_time = 0.2
 one_shot = true
 
-[node name="Hurtbox" parent="." index="5" unique_id=160118446 instance=ExtResource("4_bgq54")]
+[node name="BasicAttackCooldownTimer" type="Timer" parent="Timers" index="1" unique_id=680230194]
 
-[node name="Collision" type="CollisionShape2D" parent="Hurtbox" index="0" unique_id=2108373255]
-shape = SubResource("RectangleShape2D_bgq54")
-
-[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="Timers/DashCooldownTimer" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="Timers/BasicAttackCooldownTimer" to="." method="_on_basic_attack_cooldown_timer_timeout"]

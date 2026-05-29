@@ -31,6 +31,7 @@ enum State {
 	MOVING,
 	START_DASH,
 	DASHING,
+	BASIC_ATTACK
 }
 
 var current_state: State = State.IDLE
@@ -49,22 +50,25 @@ var dash_time_remaining: float = 0.0
 var dash_recharge_time: float = 0.0
 var dash_target_point: Vector2 = Vector2.ZERO
 
+var can_basic_attack: bool = true
 var basic_attack_recharge_time: float = 0.0
 
 
-@onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var dash_cooldown_timer: Timer = $Timers/DashCooldownTimer
+@onready var basic_attack_cooldown_timer: Timer = $Timers/BasicAttackCooldownTimer
 
 @onready var state_label: Label = $StateLabel
 @onready var kit_slot_label: Label = $"../UI/KitSlots/Label"
 
 
 func _ready() -> void:
-	_dash_setup()
+	_setup()
 
 
 func _physics_process(delta: float) -> void:
 	var move_dir := Game.move_joystick_position
 	var dashed := Game.dash_joystick_released
+	var basic_attacked := Game.basic_attack_joystick_released
 
 	# Process states
 	match current_state:
@@ -72,12 +76,15 @@ func _physics_process(delta: float) -> void:
 		State.MOVING: _process_moving(move_dir)
 		State.START_DASH: _process_start_dash()
 		State.DASHING: _process_dashing(delta)
+		State.BASIC_ATTACK: _process_basic_attack()
 
 	# Transition states
 	if dashing:
 		current_state = State.DASHING
 	elif can_dash and dashed:
 		current_state = State.START_DASH
+	elif can_basic_attack and basic_attacked:
+		current_state = State.BASIC_ATTACK
 	elif move_dir != Vector2.ZERO:
 		current_state = State.MOVING
 	else:
@@ -95,6 +102,7 @@ func _print_state(state: int) -> String:
 		State.MOVING: return "moving"
 		State.START_DASH: return "start_dash" 
 		State.DASHING: return "dashing"
+		State.BASIC_ATTACK: return "basic_attack"
 	return "man idk"
 
 
@@ -132,7 +140,12 @@ func _process_dashing(delta: float) -> void:
 	velocity = dash_target_point.normalized() * dash_speed
 
 
-func _dash_setup() -> void:
+func _process_basic_attack() -> void:
+	print("basc atkack")
+
+
+func _setup() -> void:
+	# Dash
 	if not dash_cooldown_timer.is_connected(
 		"timeout", 
 		_on_dash_cooldown_timeout
@@ -140,6 +153,15 @@ func _dash_setup() -> void:
 		dash_cooldown_timer.connect("timeout", _on_dash_cooldown_timeout)
 	dash_recharge_time = dash_cooldown
 	dash_cooldown_timer.wait_time = dash_recharge_time
+
+	# Basic attack
+	if not basic_attack_cooldown_timer.is_connected(
+		"timeout",
+		_on_basic_attack_cooldown_timer_timeout
+	):
+		basic_attack_cooldown_timer.connect("timeout", _on_basic_attack_cooldown_timer_timeout)
+	basic_attack_recharge_time = basic_attack_cooldown
+	basic_attack_cooldown_timer.wait_time = basic_attack_recharge_time
 
 
 func change_kit(new: Kit) -> void:
@@ -164,3 +186,7 @@ func _update_kit(new: Kit) -> void:
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
+
+
+func _on_basic_attack_cooldown_timer_timeout() -> void:
+	can_basic_attack = true

@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://bjknrfnj3yof1"]
+[gd_scene format=3 uid="uid://btlu3iodsdf2h"]
 
 [ext_resource type="PackedScene" uid="uid://dmg10bm1phw4u" path="res://ui/joystick/joystick.tscn" id="1_ovvwj"]
-[ext_resource type="Script" uid="uid://2oc3d0qmu6xl" path="res://ui/joystick/attack/basic/basic_attack_joystick.gd" id="2_mil1s"]
+[ext_resource type="Script" uid="uid://b0jv46ieneheu" path="res://ui/joystick/attack/basic/basic_attack_joystick.gd" id="2_mil1s"]
 
-[node name="BasicAttackJoystick" unique_id=1104781509 instance=ExtResource("1_ovvwj")]
+[node name="BasicAttackJoystick" unique_id=1876497017 instance=ExtResource("1_ovvwj")]
 script = ExtResource("2_mil1s")
 has_cooldown = true
 
-[node name="Base" parent="." index="0" unique_id=1623793713]
-self_modulate = Color(1, 0.3133042, 0, 0.349)
+[node name="Sprite" parent="Base" parent_id_path=PackedInt32Array(231018845) index="0" unique_id=379984065]
+self_modulate = Color(1, 0, 0, 0.35000002)
 
-[node name="Sprite" parent="Stick" parent_id_path=PackedInt32Array(1972446715) index="0" unique_id=1977043875]
-self_modulate = Color(1, 0.3133042, 0, 1)
+[node name="Sprite" parent="Stick" parent_id_path=PackedInt32Array(5582385) index="0" unique_id=796522572]
+self_modulate = Color(1, 0, 0, 1)

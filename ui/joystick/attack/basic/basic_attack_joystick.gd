@@ -14,9 +14,6 @@ func _ready() -> void:
 
 
 func _control_joystick(pos: Vector2) -> void:
-	if in_cooldown:
-		return
-
 	super(pos)
 	Game.basic_attack_joystick_position = dir.normalized()
 
@@ -24,8 +21,13 @@ func _control_joystick(pos: Vector2) -> void:
 func _release_joystick() -> void:
 	if not dragging:
 		return
-	# Will not dash if only pressed and not directed
+	# To-do: auto-aim basic attack to nearest enemy if only clicked, not dragged
 	if stick.position == Vector2.ZERO:
 		return
 
-	super()
+	Game.basic_attack_joystick_released = true
+
+	await super()
+
+	Game.basic_attack_joystick_position = Vector2.ZERO
+	Game.basic_attack_joystick_released = false
