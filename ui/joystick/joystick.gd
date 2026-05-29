@@ -52,7 +52,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _control_joystick(pos: Vector2) -> void:
-	stick.global_position = pos #- (stick.size / 2.0)
+	stick.global_position = pos - (stick.size / 2.0)
 	dir = stick.global_position - global_position
 
 	# Visual
