@@ -42,7 +42,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Player" parent="." unique_id=1607062957 instance=ExtResource("1_ig7tw")]
 position = Vector2(597, 448)
 
-[node name="Enemy" parent="." unique_id=1584016522 groups=["Enemy"] instance=ExtResource("3_1bvp3")]
+[node name="Enemy" parent="." unique_id=1584016522 instance=ExtResource("3_1bvp3")]
 position = Vector2(1310, 436)
 move_speed = 500.0
 attack_distance = 350.0

@@ -15,13 +15,16 @@ func _ready() -> void:
 
 func _control_joystick(pos: Vector2) -> void:
 	super(pos)
+	# Joystick is clicked only, not dragged
+	#if stick.position == Vector2.ZERO:
+	if stick.position == Vector2(-64, -64):
+		dir = _get_auto_aim_direction()
 	Game.basic_attack_joystick_position = dir.normalized()
 
 
 func _release_joystick() -> void:
 	if not dragging:
 		return
-	# To-do: auto-aim basic attack to nearest enemy if only clicked, not dragged
 	if stick.position == Vector2.ZERO:
 		return
 
@@ -31,3 +34,7 @@ func _release_joystick() -> void:
 
 	Game.basic_attack_joystick_position = Vector2.ZERO
 	Game.basic_attack_joystick_released = false
+
+
+func _get_auto_aim_direction() -> Vector2:
+	return player.get_closest_enemy().global_position - player.global_position

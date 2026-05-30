@@ -23,6 +23,11 @@ var current_state: State = State.IDLE
 @onready var state_label: Label = $StateLabel
 
 
+func _ready() -> void:
+	if not is_in_group("Enemy"):
+		add_to_group("Enemy")
+
+
 func _physics_process(delta: float) -> void:
 	# Process states
 	match current_state:

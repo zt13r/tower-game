@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://j1gsj5tkeuw7" path="res://assets/icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bwkvognnt3bxe" path="res://entity/player/player.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://hbox/hurtbox/hurtbox.tscn" id="4_bgq54"]
+[ext_resource type="Script" uid="uid://dccv4eh7vlfs2" path="res://kits/abilities/fire.gd" id="5_wjhpj"]
+[ext_resource type="Script" uid="uid://dt0m3rvdpddyp" path="res://kits/weapons/gun.gd" id="6_2iqu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6ar1"]
 size = Vector2(192, 192)
@@ -11,8 +13,10 @@ size = Vector2(192, 192)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgq54"]
 size = Vector2(192, 192)
 
-[node name="Player" unique_id=1584016522 groups=["Player"] instance=ExtResource("1_nqnt1")]
+[node name="Player" unique_id=1584016522 node_paths=PackedStringArray("ability", "weapon") groups=["Player"] instance=ExtResource("1_nqnt1")]
 script = ExtResource("1_rkbax")
+ability = NodePath("Kits/Abilities/FireAbility")
+weapon = NodePath("Kits/Weapons/GunWeapon")
 
 [node name="Sprite" parent="." index="0" unique_id=1722970200]
 scale = Vector2(1.5, 1.5)
@@ -53,5 +57,25 @@ one_shot = true
 
 [node name="BasicAttackCooldownTimer" type="Timer" parent="Timers" index="1" unique_id=680230194]
 
+[node name="SkillOneCooldownTimer" type="Timer" parent="Timers" index="2" unique_id=887351047]
+
+[node name="SkillTwoCooldownTimer" type="Timer" parent="Timers" index="3" unique_id=317298041]
+
+[node name="Kits" type="Node" parent="." index="6" unique_id=1142372206]
+
+[node name="Abilities" type="Node" parent="Kits" index="0" unique_id=1671061148]
+
+[node name="FireAbility" type="Node" parent="Kits/Abilities" index="0" unique_id=629727037]
+script = ExtResource("5_wjhpj")
+metadata/_custom_type_script = "uid://dccv4eh7vlfs2"
+
+[node name="Weapons" type="Node" parent="Kits" index="1" unique_id=1340474755]
+
+[node name="GunWeapon" type="Node" parent="Kits/Weapons" index="0" unique_id=1076285266]
+script = ExtResource("6_2iqu4")
+metadata/_custom_type_script = "uid://dt0m3rvdpddyp"
+
 [connection signal="timeout" from="Timers/DashCooldownTimer" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timers/BasicAttackCooldownTimer" to="." method="_on_basic_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/SkillOneCooldownTimer" to="." method="_on_skill_one_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/SkillTwoCooldownTimer" to="." method="_on_skill_two_cooldown_timer_timeout"]

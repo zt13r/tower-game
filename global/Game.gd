@@ -15,9 +15,13 @@ var difficulty_multiplier: float = 0.0
 var move_joystick_position: Vector2 = Vector2.ZERO
 var dash_joystick_position: Vector2 = Vector2.ZERO
 var basic_attack_joystick_position: Vector2 = Vector2.ZERO
+var skill_one_joystick_position: Vector2 = Vector2.ZERO
+var skill_two_joystick_position: Vector2 = Vector2.ZERO
 
 var dash_joystick_released: bool = false
 var basic_attack_joystick_released: bool = false
+var skill_one_joystick_released: bool = false
+var skill_two_joystick_released: bool = false
 
 
 func set_difficulty(new: Difficulty) -> void:

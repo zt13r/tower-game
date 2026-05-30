@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://btlu3iodsdf2h"]
 
 [ext_resource type="PackedScene" uid="uid://dmg10bm1phw4u" path="res://ui/joystick/joystick.tscn" id="1_ovvwj"]
-[ext_resource type="Script" uid="uid://b0jv46ieneheu" path="res://ui/joystick/attack/basic/basic_attack_joystick.gd" id="2_mil1s"]
+[ext_resource type="Script" uid="uid://b0jv46ieneheu" path="res://ui/joystick/attack/basic_attack/basic_attack_joystick.gd" id="2_mil1s"]
 
 [node name="BasicAttackJoystick" unique_id=1876497017 instance=ExtResource("1_ovvwj")]
 script = ExtResource("2_mil1s")
