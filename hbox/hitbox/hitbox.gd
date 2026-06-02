@@ -18,3 +18,6 @@ func _on_hitbox_pinged(hurtbox: Hurtbox) -> void:
 	var damage := actor.attack_damage
 
 	target.take_damage(damage)
+	if actor is Projectile:
+		actor.apply_hit_effect(target)
+		actor.queue_free()

@@ -13,9 +13,6 @@ const MAX_ENEMY_DISTANCE: float = 1500.0 # idk
 @export var dash_duration: float = 0.5 # in seconds
 @export var dash_cooldown: float = 0.5 # in seconds
 
-@export_group("Attack")
-@export var basic_attack_cooldown: float = 0.2
-
 @export_subgroup("Kit")
 @export var ability: Ability = null
 @export var weapon: Weapon = null
@@ -36,7 +33,7 @@ var current_state: State = State.IDLE
 var current_kit: Kit:
 	get:
 		if not current_kit:
-			current_kit = [ability, weapon].pick_random()
+			current_kit = ability
 		return current_kit
 
 var move_dir: Vector2 = Vector2.ZERO
@@ -199,7 +196,7 @@ func _setup() -> void:
 		_on_basic_attack_cooldown_timer_timeout
 	):
 		basic_attack_cooldown_timer.connect("timeout", _on_basic_attack_cooldown_timer_timeout)
-	basic_attack_recharge_time = basic_attack_cooldown
+	basic_attack_recharge_time = current_kit.basic_attack_cooldown
 	basic_attack_cooldown_timer.wait_time = basic_attack_recharge_time
 
 	# Skill one
@@ -208,7 +205,7 @@ func _setup() -> void:
 		_on_skill_one_cooldown_timer_timeout
 	):
 		skill_one_cooldown_timer.connect("timeout", _on_skill_one_cooldown_timer_timeout)
-	skill_one_recharge_time = current_kit.cooldown
+	skill_one_recharge_time = current_kit.skill_one_cooldown
 	skill_one_cooldown_timer.wait_time = skill_one_recharge_time
 
 	# Skill two
@@ -217,7 +214,7 @@ func _setup() -> void:
 		_on_skill_two_cooldown_timer_timeout
 	):
 		skill_one_cooldown_timer.connect("timeout", _on_skill_two_cooldown_timer_timeout)
-	skill_two_recharge_time = current_kit.cooldown
+	skill_two_recharge_time = current_kit.skill_two_cooldown
 	skill_two_cooldown_timer.wait_time = skill_two_recharge_time
 
 

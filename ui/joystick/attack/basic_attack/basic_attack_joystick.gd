@@ -23,6 +23,8 @@ func _control_joystick(pos: Vector2) -> void:
 
 
 func _release_joystick() -> void:
+	Game.last_basic_attack_joystick_position = Game.basic_attack_joystick_position
+
 	if not dragging:
 		return
 	if stick.position == Vector2.ZERO:

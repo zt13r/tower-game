@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d0g7ynfi6atpe"]
+
+[ext_resource type="PackedScene" uid="uid://dw42u442c08av" path="res://projectile/projectile.tscn" id="1_e6ixf"]
+[ext_resource type="Script" uid="uid://cm37i81o14ifi" path="res://projectile/fire/fire_basic_attack.gd" id="2_lks71"]
+[ext_resource type="Texture2D" uid="uid://j1gsj5tkeuw7" path="res://assets/icon.svg" id="3_lks71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lks71"]
+size = Vector2(32, 32)
+
+[node name="FireBasicAttack" unique_id=1584016522 instance=ExtResource("1_e6ixf")]
+script = ExtResource("2_lks71")
+reduced_heal_multiplier = 0.7
+burn_duration = 4.0
+burn_interval = 1.0
+burn_damage = 2.0
+burn_meta = "burn"
+heal_meta = "reduced_heal"
+
+[node name="Sprite" parent="." index="0" unique_id=1722970200]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_lks71")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1129795298) index="0" unique_id=781175263]
+shape = SubResource("RectangleShape2D_lks71")
