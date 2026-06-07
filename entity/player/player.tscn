@@ -7,6 +7,89 @@
 [ext_resource type="Script" uid="uid://dccv4eh7vlfs2" path="res://kits/abilities/fire.gd" id="5_wjhpj"]
 [ext_resource type="Script" uid="uid://dt0m3rvdpddyp" path="res://kits/weapons/gun.gd" id="6_2iqu4"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_482rp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": true,
+"name": &"DASHING",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": true,
+"name": &"MOVING",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": true,
+"name": &"START_DASH",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": true,
+"name": &"USE_BASIC_ATTACK",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": true,
+"name": &"USE_SKILL_ONE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": true,
+"name": &"USE_SKILL_TWO",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": false,
+"name": &"USING_BASIC_ATTACK",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": false,
+"name": &"USING_SKILL_ONE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oul6g")
+}],
+"loop": false,
+"name": &"USING_SKILL_TWO",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6ar1"]
 size = Vector2(192, 192)
 
@@ -16,17 +99,18 @@ size = Vector2(192, 192)
 [node name="Player" unique_id=1584016522 node_paths=PackedStringArray("ability", "weapon") groups=["Player"] instance=ExtResource("1_nqnt1")]
 collision_mask = 15
 script = ExtResource("1_rkbax")
+ability = NodePath("Kits/Abilities/FireAbility")
+weapon = NodePath("Kits/Weapons/GunWeapon")
 move_speed = 700.0
 dash_speed = 1500.0
 dash_distance = 500.0
 dash_duration = 0.5
 dash_cooldown = 0.5
-ability = NodePath("Kits/Abilities/FireAbility")
-weapon = NodePath("Kits/Weapons/GunWeapon")
 
-[node name="Sprite" parent="." index="0" unique_id=1722970200]
+[node name="Sprite" parent="." index="0" unique_id=9695311]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_oul6g")
+sprite_frames = SubResource("SpriteFrames_482rp")
+animation = &"USING_SKILL_TWO"
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1" unique_id=535775730]
 shape = SubResource("RectangleShape2D_e6ar1")
@@ -39,7 +123,10 @@ position_smoothing_enabled = true
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" index="0" unique_id=2108373255]
 shape = SubResource("RectangleShape2D_bgq54")
 
-[node name="StateLabel" type="Label" parent="." index="4" unique_id=2044777302]
+[node name="Hitmarker" type="Marker2D" parent="." index="4" unique_id=1245815534]
+gizmo_extents = 50.0
+
+[node name="StateLabel" type="Label" parent="." index="5" unique_id=2044777302]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -55,19 +142,25 @@ theme_override_font_sizes/font_size = 35
 text = "state"
 horizontal_alignment = 1
 
-[node name="Timers" type="Node" parent="." index="5" unique_id=2059658890]
+[node name="Timers" type="Node" parent="." index="6" unique_id=2059658890]
 
-[node name="DashCooldownTimer" type="Timer" parent="Timers" index="0" unique_id=535413562]
+[node name="Cooldown" type="Node" parent="Timers" index="0" unique_id=1266160062]
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers/Cooldown" index="0" unique_id=535413562]
 wait_time = 0.2
 one_shot = true
 
-[node name="BasicAttackCooldownTimer" type="Timer" parent="Timers" index="1" unique_id=680230194]
+[node name="BasicAttackCooldownTimer" type="Timer" parent="Timers/Cooldown" index="1" unique_id=680230194]
 
-[node name="SkillOneCooldownTimer" type="Timer" parent="Timers" index="2" unique_id=887351047]
+[node name="SkillOneCooldownTimer" type="Timer" parent="Timers/Cooldown" index="2" unique_id=887351047]
 
-[node name="SkillTwoCooldownTimer" type="Timer" parent="Timers" index="3" unique_id=317298041]
+[node name="SkillTwoCooldownTimer" type="Timer" parent="Timers/Cooldown" index="3" unique_id=317298041]
 
-[node name="Kits" type="Node" parent="." index="6" unique_id=1142372206]
+[node name="UsingState" type="Node" parent="Timers" index="1" unique_id=1837056896]
+
+[node name="Timer" type="Timer" parent="Timers/UsingState" index="0" unique_id=640160250]
+
+[node name="Kits" type="Node" parent="." index="7" unique_id=1142372206]
 
 [node name="Abilities" type="Node" parent="Kits" index="0" unique_id=1671061148]
 
@@ -82,7 +175,7 @@ metadata/_custom_type_script = "uid://dccv4eh7vlfs2"
 script = ExtResource("6_2iqu4")
 metadata/_custom_type_script = "uid://dt0m3rvdpddyp"
 
-[connection signal="timeout" from="Timers/DashCooldownTimer" to="." method="_on_dash_cooldown_timeout"]
-[connection signal="timeout" from="Timers/BasicAttackCooldownTimer" to="." method="_on_basic_attack_cooldown_timer_timeout"]
-[connection signal="timeout" from="Timers/SkillOneCooldownTimer" to="." method="_on_skill_one_cooldown_timer_timeout"]
-[connection signal="timeout" from="Timers/SkillTwoCooldownTimer" to="." method="_on_skill_two_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/Cooldown/DashCooldownTimer" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="Timers/Cooldown/BasicAttackCooldownTimer" to="." method="_on_basic_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/Cooldown/SkillOneCooldownTimer" to="." method="_on_skill_one_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/Cooldown/SkillTwoCooldownTimer" to="." method="_on_skill_two_cooldown_timer_timeout"]

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dmg10bm1phw4u"]
 
 [ext_resource type="Script" uid="uid://csvl6i0kmw22h" path="res://ui/joystick/joystick.gd" id="1_5xy0b"]
-[ext_resource type="Texture2D" uid="uid://j1gsj5tkeuw7" path="res://assets/icon.svg" id="1_e7m0p"]
+[ext_resource type="Texture2D" uid="uid://cynk6xnus3nfq" path="res://assets/256-circle.png" id="2_iv86l"]
+[ext_resource type="Texture2D" uid="uid://uqh5h2deosey" path="res://assets/128-circle.png" id="3_shpt0"]
 
 [node name="Joystick" type="Control" unique_id=1876497017]
 layout_mode = 3
@@ -11,42 +12,11 @@ script = ExtResource("1_5xy0b")
 [node name="CooldownTimer" type="Timer" parent="." unique_id=2047647008]
 one_shot = true
 
-[node name="Base" type="CenterContainer" parent="." unique_id=231018845]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -128.0
-offset_right = 128.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Base" type="Sprite2D" parent="." unique_id=1569092746]
+self_modulate = Color(0.42358288, 0.42358288, 0.42358288, 1)
+texture = ExtResource("2_iv86l")
 
-[node name="Sprite" type="TextureRect" parent="Base" unique_id=379984065]
-self_modulate = Color(1, 1, 1, 0.35000002)
-custom_minimum_size = Vector2(192, 192)
-layout_mode = 2
-texture = ExtResource("1_e7m0p")
-
-[node name="Stick" type="CenterContainer" parent="." unique_id=5582385]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sprite" type="TextureRect" parent="Stick" unique_id=796522572]
-layout_mode = 2
-texture = ExtResource("1_e7m0p")
+[node name="Stick" type="Sprite2D" parent="." unique_id=940205648]
+texture = ExtResource("3_shpt0")
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

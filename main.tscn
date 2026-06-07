@@ -51,6 +51,10 @@ attack_distance = 350.0
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=1590902475 groups=["Projectiles"]]
 
+[node name="Player" type="Node2D" parent="Projectiles" unique_id=429195407]
+
+[node name="Enemy" type="Node2D" parent="Projectiles" unique_id=694121722]
+
 [node name="UI" type="CanvasLayer" parent="." unique_id=1541930524]
 
 [node name="Control" type="Control" parent="UI" unique_id=402924171]
@@ -83,7 +87,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -496.0
 offset_top = -184.0
-offset_right = -494.0
+offset_right = -496.0
 offset_bottom = -184.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -105,3 +109,4 @@ offset_right = -208.0
 offset_bottom = -200.0
 grow_horizontal = 0
 grow_vertical = 0
+click_area = 128.0

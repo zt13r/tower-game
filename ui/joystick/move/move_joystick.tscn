@@ -5,3 +5,9 @@
 
 [node name="MoveJoystick" unique_id=1104781509 instance=ExtResource("1_siids")]
 script = ExtResource("2_a47e5")
+
+[node name="Base" parent="." index="1" unique_id=1569092746]
+self_modulate = Color(0, 0, 1, 0.35000002)
+
+[node name="Stick" parent="." index="2" unique_id=940205648]
+self_modulate = Color(0, 0, 1, 1)

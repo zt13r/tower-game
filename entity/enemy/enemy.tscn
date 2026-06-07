@@ -5,6 +5,33 @@
 [ext_resource type="Script" uid="uid://bculcchoe4wdu" path="res://entity/enemy/enemy.gd" id="2_pmu85"]
 [ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://hbox/hurtbox/hurtbox.tscn" id="4_0p2mk"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmu85"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lvn57")
+}],
+"loop": true,
+"name": &"ATTACKING",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lvn57")
+}],
+"loop": true,
+"name": &"CHASING",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lvn57")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvn57"]
 size = Vector2(192, 192)
 
@@ -18,10 +45,11 @@ script = ExtResource("2_pmu85")
 move_speed = 700.0
 attack_distance = 300.0
 
-[node name="Sprite" parent="." index="0" unique_id=1722970200]
+[node name="Sprite" parent="." index="0" unique_id=9695311]
 self_modulate = Color(0.9999921, 0.25959152, 0.19534814, 1)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_lvn57")
+sprite_frames = SubResource("SpriteFrames_pmu85")
+animation = &"IDLE"
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1" unique_id=1717920861]
 shape = SubResource("RectangleShape2D_lvn57")
@@ -43,6 +71,8 @@ text = "state"
 horizontal_alignment = 1
 
 [node name="Hurtbox" parent="." index="3" unique_id=160118446 instance=ExtResource("4_0p2mk")]
+collision_layer = 0
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1438065616]
 shape = SubResource("RectangleShape2D_7mx5f")

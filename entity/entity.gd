@@ -6,7 +6,7 @@ class_name Entity extends CharacterBody2D
 @export var projectile_spawnpoint_from_origin: float = 200.0
 
 
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $Sprite
 
 
 func take_damage(amount: float) -> void:
@@ -22,3 +22,7 @@ func womp_womp() -> void:
 	set_physics_process(false)
 	set_process(false)
 	sprite.self_modulate.a = 0.3
+
+
+func _play_animation(anim: String) -> void:
+	sprite.play(anim)

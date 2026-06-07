@@ -5,4 +5,4 @@
 [node name="Entity" type="CharacterBody2D" unique_id=1584016522]
 script = ExtResource("1_bclhr")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1722970200]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=9695311]

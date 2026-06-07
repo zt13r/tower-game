@@ -12,12 +12,19 @@ class_name Enemy extends Entity
 
 
 enum State {
-	IDLE,
-	CHASING,
 	ATTACKING,
+	CHASING,
+	IDLE,
 }
 
 var current_state: State = State.IDLE
+
+# Must match State enum and sprite animation names
+var state_names: Array[String] = [
+	"ATTACKING",
+	"CHASING",
+	"IDLE",
+]
 
 
 @onready var state_label: Label = $StateLabel
@@ -43,18 +50,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		current_state = State.IDLE
 
+	_play_animation(state_names.get(current_state))
+
 	# Debug state
-	state_label.text = _print_state(current_state)
+	state_label.text = state_names.get(current_state)
 
 	move_and_slide()
-
-
-func _print_state(state: int) -> String:
-	match state:
-		State.IDLE: return "idle"
-		State.CHASING: return "chasing"
-		State.ATTACKING: return "attacking" 
-	return "man idk"
 
 
 func _process_idle() -> void:
