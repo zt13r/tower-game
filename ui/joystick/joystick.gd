@@ -66,7 +66,8 @@ func _control_joystick(pos: Vector2) -> void:
 	stick.global_position = pos
 	dir = stick.global_position - global_position
 
-	# I don't get it, but it works
+	# Locks joystick (small circle in the middle) to the joybase (big circle)
+	# According to the value of max_radius
 	if stick.position.length() > max_radius:
 		stick.position = dir.normalized() * max_radius
 		stick.position = dir.normalized() * max_radius

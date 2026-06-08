@@ -98,8 +98,6 @@ func _process(delta: float) -> void:
 	use_basic_attack = Game.basic_attack_joystick_released
 	use_skill_one = Game.skill_one_joystick_released
 	use_skill_two = Game.skill_two_joystick_released
-	if use_basic_attack:
-		print(use_basic_attack)
 
 
 func _physics_process(delta: float) -> void:
