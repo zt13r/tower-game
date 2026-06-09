@@ -11,7 +11,7 @@ class_name FireAbility extends Ability
 
 func basic_attack() -> void:
 	super()
-	var attack := basic_attack_scene.instantiate() as FireProjectile
+	var attack := basic_attack_scene.instantiate() as FireBasicAttack
 	attack.direction = Game.last_basic_attack_joystick_position
 	attack.movement_speed = basic_attack_projectile_speed
 	attack.global_position = actor.hitmarker.global_position

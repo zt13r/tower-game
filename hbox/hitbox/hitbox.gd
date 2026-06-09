@@ -17,11 +17,15 @@ func _ready() -> void:
 func _on_hitbox_pinged(hurtbox: Hurtbox) -> void:
 	var target := hurtbox.actor as Entity
 
-	# No friendly fire
+	# Player can't damage themselves with their own projectiles
 	if actor is Projectile and actor.fired_by == hurtbox.actor:
 		return
 
-	var damage := actor.attack_damage
+	var damage: float = 0.0
+	if actor is Creature:
+		damage = actor.attack_damage
+	elif actor is Projectile:
+		damage = actor.fired_by.attack_damage
 
 	target.take_damage(damage)
 

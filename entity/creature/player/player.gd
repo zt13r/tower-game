@@ -1,4 +1,4 @@
-class_name Player extends Entity
+class_name Player extends Creature
 
 
 const MAX_ENEMY_DISTANCE: float = 1500.0 # idk
@@ -8,16 +8,13 @@ const HITMARKER_RADIUS: float = 100.0
 @export_group("Kit")
 @export var ability: Ability = null
 @export var weapon: Weapon = null
-@export_group("Movement")
-@export var move_speed: float = 700.0
-@export_subgroup("Dash")
+@export_group("Dash")
 @export var dash_speed: float = 1500.0
 @export var dash_distance: float = 500.0
 @export var dash_duration: float = 0.5 # in seconds
 @export var dash_cooldown: float = 0.5 # in seconds
 
 
-# Arranged alphabetically because AnimatedSprite2D shenanigans :(
 enum State {
 	DASHING,
 	IDLE,
@@ -39,7 +36,6 @@ var current_kit: Kit:
 			current_kit = ability
 		return current_kit
 
-# Must match State enum and sprite animation names
 var state_names: Array[String] = [
 	"DASHING",
 	"IDLE",
@@ -144,8 +140,6 @@ func _physics_process(delta: float) -> void:
 		_set_hitmarker_position(Game.skill_one_joystick_position)
 	elif Game.skill_two_joystick_position != Vector2.ZERO:
 		_set_hitmarker_position(Game.skill_two_joystick_position)
-
-	_play_animation(state_names.get(current_state))
 
 	# Debug state
 	state_label.text = state_names.get(current_state)
@@ -255,20 +249,6 @@ func _setup() -> void:
 	skill_two_recharge_time = current_kit.skill_two_cooldown
 	skill_two_cooldown_timer.wait_time = skill_two_recharge_time
 
-	# Set animation durations
-	var animations := sprite.sprite_frames
-	for anim in animations.get_animation_names():
-		match anim:
-			"USING_BASIC_ATTACK":
-				animations.set_animation_speed(anim, current_kit.basic_attack_duration)
-				animations.set_animation_loop(anim, false)
-			"USING_SKILL_ONE":
-				animations.set_animation_speed(anim, current_kit.skill_one_duration)
-				animations.set_animation_loop(anim, false)
-			"USING_SKILL_TWO":
-				animations.set_animation_speed(anim, current_kit.skill_two_duration)
-				animations.set_animation_loop(anim, false)
-
 
 func _set_hitmarker_position(pos: Vector2) -> void:
 	hitmarker.position = pos * HITMARKER_RADIUS
@@ -287,10 +267,6 @@ func get_closest_enemy() -> Enemy:
 
 func get_distance(enemy: Enemy) -> float:
 	return (enemy.global_position - global_position).length()
-
-
-func wait(time: float) -> void:
-	await get_tree().create_timer(time).timeout
 
 
 func _on_dash_cooldown_timeout() -> void:

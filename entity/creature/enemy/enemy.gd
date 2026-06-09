@@ -1,7 +1,6 @@
-class_name Enemy extends Entity
+class_name Enemy extends Creature
 
 
-@export var move_speed: float = 700.0
 @export var attack_distance: float = 300.0 # In pixels? idk
 
 @export var player: Player:
@@ -19,7 +18,6 @@ enum State {
 
 var current_state: State = State.IDLE
 
-# Must match State enum and sprite animation names
 var state_names: Array[String] = [
 	"ATTACKING",
 	"CHASING",
@@ -49,8 +47,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		current_state = State.IDLE
 
-	_play_animation(state_names.get(current_state))
-
 	# Debug state
 	state_label.text = state_names.get(current_state)
 
@@ -69,6 +65,7 @@ func _process_chasing() -> void:
 
 func _process_attacking() -> void:
 	velocity = Vector2.ZERO
+	# Attack idk
 
 
 func _setup() -> void:
