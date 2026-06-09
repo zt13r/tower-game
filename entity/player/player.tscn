@@ -94,10 +94,11 @@ animations = [{
 size = Vector2(192, 192)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgq54"]
-size = Vector2(192, 192)
+size = Vector2(196, 196)
 
 [node name="Player" unique_id=1584016522 node_paths=PackedStringArray("ability", "weapon") groups=["Player"] instance=ExtResource("1_nqnt1")]
-collision_mask = 14
+collision_layer = 1
+collision_mask = 8
 script = ExtResource("1_rkbax")
 ability = NodePath("Kits/Abilities/FireAbility")
 weapon = NodePath("Kits/Weapons/GunWeapon")
@@ -156,10 +157,6 @@ one_shot = true
 [node name="SkillOneCooldownTimer" type="Timer" parent="Timers/Cooldown" index="2" unique_id=887351047]
 
 [node name="SkillTwoCooldownTimer" type="Timer" parent="Timers/Cooldown" index="3" unique_id=317298041]
-
-[node name="UsingState" type="Node" parent="Timers" index="1" unique_id=1837056896]
-
-[node name="Timer" type="Timer" parent="Timers/UsingState" index="0" unique_id=640160250]
 
 [node name="Kits" type="Node" parent="." index="7" unique_id=1142372206]
 

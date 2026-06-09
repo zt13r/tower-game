@@ -31,8 +31,7 @@ var state_names: Array[String] = [
 
 
 func _ready() -> void:
-	if not is_in_group("Enemy"):
-		add_to_group("Enemy")
+	super()
 
 
 func _physics_process(delta: float) -> void:
@@ -70,3 +69,9 @@ func _process_chasing() -> void:
 
 func _process_attacking() -> void:
 	velocity = Vector2.ZERO
+
+
+func _setup() -> void:
+	super()
+	if not is_in_group("Enemy"):
+		add_to_group("Enemy")

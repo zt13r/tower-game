@@ -89,6 +89,7 @@ var using_skill_two: bool = false
 
 
 func _ready() -> void:
+	super()
 	_setup()
 
 
@@ -228,6 +229,8 @@ func _process_using_skill_two() -> void:
 
 
 func _setup() -> void:
+	super()
+
 	# Dash
 	if not dash_cooldown_timer.is_connected("timeout", _on_dash_cooldown_timeout):
 		dash_cooldown_timer.connect("timeout", _on_dash_cooldown_timeout)

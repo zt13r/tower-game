@@ -7,6 +7,8 @@
 size = Vector2(32, 32)
 
 [node name="FireBasicAttack" unique_id=1584016522 instance=ExtResource("1_e6ixf")]
+collision_layer = 1
+collision_mask = 1
 script = ExtResource("2_lks71")
 reduced_heal_multiplier = 0.7
 burn_duration = 4.0

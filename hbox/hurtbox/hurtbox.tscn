@@ -4,5 +4,5 @@
 
 [node name="Hurtbox" type="Area2D" unique_id=160118446]
 collision_layer = 32
-collision_mask = 16
+collision_mask = 23
 script = ExtResource("1_ydip0")

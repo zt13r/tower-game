@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bio2t6w3wcxyc" path="res://entity/entity.gd" id="1_bclhr"]
 
 [node name="Entity" type="CharacterBody2D" unique_id=1584016522]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_bclhr")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=9695311]

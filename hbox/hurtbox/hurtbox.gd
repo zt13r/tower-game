@@ -6,3 +6,8 @@ class_name Hurtbox extends Area2D
 		if not actor:
 			actor = get_parent()
 		return actor
+
+
+func _ready() -> void:
+	monitorable = true
+	monitoring = true

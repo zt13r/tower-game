@@ -15,6 +15,7 @@ func basic_attack() -> void:
 	attack.direction = Game.last_basic_attack_joystick_position
 	attack.movement_speed = basic_attack_projectile_speed
 	attack.global_position = actor.hitmarker.global_position
+	attack.fired_by = actor
 	player_projectiles.add_child(attack)
 
 
