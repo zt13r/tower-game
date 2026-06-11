@@ -1,4 +1,4 @@
-class_name BasicAttackJoystick extends Joystick
+class_name SkillTwoJoystick extends Joystick
 
 
 @export var player: Player:
@@ -10,7 +10,7 @@ class_name BasicAttackJoystick extends Joystick
 
 func _ready() -> void:
 	super()
-	cooldown_timer.wait_time = player.basic_attack_recharge_time
+	cooldown_timer.wait_time = player.skill_two_recharge_time
 
 
 func _control_joystick(pos: Vector2) -> void:
@@ -18,21 +18,21 @@ func _control_joystick(pos: Vector2) -> void:
 	# Joystick is clicked only, not dragged
 	if stick.position == Vector2.ZERO:
 		dir = _get_auto_aim_direction()
-	Game.basic_attack_joystick_direction = dir.normalized()
+	Game.skill_two_joystick_direction = dir.normalized()
 
 
 func _release_joystick() -> void:
-	Game.last_basic_attack_joystick_direction = Game.basic_attack_joystick_direction
+	Game.last_skill_two_joystick_direction = Game.skill_two_joystick_direction
 
 	if not dragging:
 		return
 
-	Game.basic_attack_joystick_released = true
+	Game.skill_two_joystick_released = true
 
 	await super()
 
-	Game.basic_attack_joystick_direction = Vector2.ZERO
-	Game.basic_attack_joystick_released = false
+	Game.skill_two_joystick_direction = Vector2.ZERO
+	Game.skill_two_joystick_released = false
 
 
 func _get_auto_aim_direction() -> Vector2:

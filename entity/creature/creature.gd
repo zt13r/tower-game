@@ -2,7 +2,6 @@ class_name Creature extends Entity
 
 
 @export var max_health: float = 100.0
-@export var attack_damage: float = 2.0
 @export var move_speed: float = 700.0
 
 

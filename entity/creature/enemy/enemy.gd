@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	# Transition states
 	if global_position.distance_to(player.global_position) <= attack_distance:
 		current_state = State.ATTACKING
-	elif global_position.distance_to(player.global_position) >= attack_distance:
+	elif global_position.distance_to(player.global_position) > attack_distance:
 		current_state = State.CHASING
 	else:
 		current_state = State.IDLE

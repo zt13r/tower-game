@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _control_joystick(pos: Vector2) -> void:
 	super(pos)
-	Game.dash_joystick_position = dir.normalized()
+	Game.dash_joystick_direction = dir.normalized()
 
 
 func _release_joystick() -> void:
@@ -29,5 +29,5 @@ func _release_joystick() -> void:
 
 	await super()
 
-	Game.dash_joystick_position = Vector2.ZERO
+	Game.dash_joystick_direction = Vector2.ZERO
 	Game.dash_joystick_released = false

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://btpkhaot7gad"]
 
 [ext_resource type="PackedScene" uid="uid://yg5jccm2on8s" path="res://entity/projectile/ranged/ranged_projectile.tscn" id="1_t6tjg"]
-[ext_resource type="Script" uid="uid://cb5loe2q4vngr" path="res://entity/projectile/ranged/bullet/bullet.gd" id="2_p0np5"]
+[ext_resource type="Script" uid="uid://cb5loe2q4vngr" path="res://entity/projectile/ranged/bullet/bullet_projectile.gd" id="2_p0np5"]
 
 [sub_resource type="Gradient" id="Gradient_t6tjg"]
 offsets = PackedFloat32Array(0)

@@ -21,11 +21,14 @@ func basic_attack() -> void:
 	if not basic_attack_scene:
 		print("%s has no basic attack scene" % name)
 		return
+
 	var attack := basic_attack_scene.instantiate() as BulletProjectile
-	attack.direction = Game.last_basic_attack_joystick_position
+	attack.damage = basic_attack_damage
 	attack.movement_speed = bullet_basic_attack_speed
+	attack.direction = Game.last_basic_attack_joystick_direction
 	attack.global_position = actor.hitmarker.global_position
 	attack.fired_by = actor
+
 	player_projectiles.add_child(attack)
 
 

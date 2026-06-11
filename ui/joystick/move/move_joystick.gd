@@ -7,9 +7,9 @@ func _ready() -> void:
 
 func _control_joystick(pos: Vector2) -> void:
 	super(pos)
-	Game.move_joystick_position = dir.normalized()
+	Game.move_joystick_direction = dir.normalized()
 
 
 func _release_joystick() -> void:
 	super()
-	Game.move_joystick_position = Vector2.ZERO
+	Game.move_joystick_direction = Vector2.ZERO

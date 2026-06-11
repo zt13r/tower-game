@@ -96,7 +96,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	move_dir = Game.move_joystick_position
+	move_dir = Game.move_joystick_direction
 	dashed = Game.dash_joystick_released
 	use_basic_attack = Game.basic_attack_joystick_released
 	use_skill_one = Game.skill_one_joystick_released
@@ -140,12 +140,12 @@ func _physics_process(delta: float) -> void:
 		current_state = State.IDLE
 
 	# Hitmarker position
-	if Game.basic_attack_joystick_position != Vector2.ZERO:
-		_set_hitmarker_position(Game.basic_attack_joystick_position)
-	elif Game.skill_one_joystick_position != Vector2.ZERO:
-		_set_hitmarker_position(Game.skill_one_joystick_position)
-	elif Game.skill_two_joystick_position != Vector2.ZERO:
-		_set_hitmarker_position(Game.skill_two_joystick_position)
+	if Game.basic_attack_joystick_direction != Vector2.ZERO:
+		_set_hitmarker_position(Game.basic_attack_joystick_direction)
+	elif Game.skill_one_joystick_direction != Vector2.ZERO:
+		_set_hitmarker_position(Game.skill_one_joystick_direction)
+	elif Game.skill_two_joystick_direction != Vector2.ZERO:
+		_set_hitmarker_position(Game.skill_two_joystick_direction)
 
 	# Debug state
 	state_label.text = state_names.get(current_state)
@@ -167,7 +167,7 @@ func _process_start_dash() -> void:
 	dash_distance_remaining = dash_distance
 	dash_time_remaining = dash_duration
 
-	var dash_dir = Game.dash_joystick_position
+	var dash_dir = Game.dash_joystick_direction
 	dash_target_point = dash_dir * dash_distance
 
 	dashing = true
@@ -208,11 +208,13 @@ func _process_use_skill_one() -> void:
 	elif current_kit is Weapon:
 		weapon.skill_one()
 	using_skill_one = true
+	can_skill_one = false
 
 
 func _process_using_skill_one() -> void:
 	await wait(current_kit.skill_one_duration)
 	using_skill_one = false
+	skill_one_cooldown_timer.start()
 
 
 func _process_use_skill_two() -> void:
@@ -221,11 +223,13 @@ func _process_use_skill_two() -> void:
 	elif current_kit is Weapon:
 		weapon.skill_two()
 	using_skill_two = true
+	can_skill_two = false
 
 
 func _process_using_skill_two() -> void:
 	await wait(current_kit.skill_two_duration)
 	using_skill_two = false
+	skill_two_cooldown_timer.start()
 
 
 func _setup() -> void:

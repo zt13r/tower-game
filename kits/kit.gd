@@ -8,6 +8,10 @@ class_name Kit extends Node
 			actor = get_tree().get_first_node_in_group("Player")
 		return actor
 
+@export_group("Damage")
+@export var basic_attack_damage: float = 2.0
+@export var skill_one_damage: float = 7.0
+@export var skill_two_damage: float = 12.0
 # In seconds
 @export_group("Cooldown")
 @export var basic_attack_cooldown: float = 0.2
