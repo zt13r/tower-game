@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://by8d1ms5l2esh"]
+
+[ext_resource type="Script" uid="uid://bwkvognnt3bxe" path="res://src/gameplay/entity/creature/player/player.gd" id="2_bksb7"]
+[ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://src/hbox/hurtbox/hurtbox.tscn" id="4_bgq54"]
+[ext_resource type="Script" uid="uid://dccv4eh7vlfs2" path="res://src/gameplay/kits/abilities/fire.gd" id="5_wjhpj"]
+[ext_resource type="Script" uid="uid://dt0m3rvdpddyp" path="res://src/gameplay/kits/weapons/gun.gd" id="6_2iqu4"]
+[ext_resource type="PackedScene" uid="uid://btpkhaot7gad" path="res://src/gameplay/entity/projectile/ranged/bullet/bullet_projectile.tscn" id="6_l1jwt"]
+
+[sub_resource type="Gradient" id="Gradient_bksb7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l1jwt"]
+gradient = SubResource("Gradient_bksb7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxyxd"]
+size = Vector2(192, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bksb7"]
+size = Vector2(196, 196)
+
+[node name="Player" unique_id=1584016522 groups=["Player"]]
+collision_layer = 1
+script = ExtResource("2_bksb7")
+dash_speed = 1500.0
+dash_distance = 500.0
+dash_duration = 0.5
+dash_cooldown = 0.5
+
+[node name="TemporarySprite" type="Sprite2D" parent="." index="0" unique_id=89854304]
+scale = Vector2(3, 3)
+texture = SubResource("GradientTexture2D_l1jwt")
+
+[node name="Collision" parent="." index="1" unique_id=542843271]
+shape = SubResource("RectangleShape2D_hxyxd")
+
+[node name="Hitmarker" type="Marker2D" parent="." index="2" unique_id=1713072549]
+unique_name_in_owner = true
+gizmo_extents = 50.0
+
+[node name="Hurtbox" parent="." index="3" unique_id=160118446 instance=ExtResource("4_bgq54")]
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" index="0" unique_id=553652866]
+shape = SubResource("RectangleShape2D_bksb7")
+
+[node name="StateLabel" type="Label" parent="." index="4" unique_id=280181554]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -152.5
+offset_right = 42.5
+offset_bottom = -103.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "state"
+horizontal_alignment = 1
+
+[node name="Timers" type="Node" parent="." index="5" unique_id=725972150]
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers" index="0" unique_id=1277390833]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="BasicAttackCooldownTimer" type="Timer" parent="Timers" index="1" unique_id=1123930605]
+unique_name_in_owner = true
+
+[node name="SkillOneCooldownTimer" type="Timer" parent="Timers" index="2" unique_id=1164651504]
+unique_name_in_owner = true
+
+[node name="SkillTwoCooldownTimer" type="Timer" parent="Timers" index="3" unique_id=1088620050]
+unique_name_in_owner = true
+
+[node name="Kits" type="Node" parent="." index="6" unique_id=2032754592]
+
+[node name="Abilities" type="Node" parent="Kits" index="0" unique_id=1302314476 groups=["Abilities"]]
+
+[node name="FireAbility" type="Node" parent="Kits/Abilities" index="0" unique_id=1280699689 node_paths=PackedStringArray("actor")]
+script = ExtResource("5_wjhpj")
+skill_one_duration = 0.1
+actor = NodePath("../../..")
+metadata/_custom_type_script = "uid://dccv4eh7vlfs2"
+
+[node name="Weapons" type="Node" parent="Kits" index="1" unique_id=1890260418 groups=["Weapons"]]
+
+[node name="GunWeapon" type="Node" parent="Kits/Weapons" index="0" unique_id=1850167821 node_paths=PackedStringArray("actor")]
+script = ExtResource("6_2iqu4")
+basic_attack_scene = ExtResource("6_l1jwt")
+bullet_basic_attack_speed = 800.0
+actor = NodePath("../../..")
+metadata/_custom_type_script = "uid://dt0m3rvdpddyp"

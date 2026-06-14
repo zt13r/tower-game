@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b5p4d513nxmpl"]
+
+[ext_resource type="PackedScene" path="res://src/gameplay/entity/creature/creature.tscn" id="1_jbe3p"]
+[ext_resource type="Script" uid="uid://bculcchoe4wdu" path="res://src/core/superclass/entities/enemy.gd" id="2_pmu85"]
+[ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://src/hbox/hurtbox/hurtbox.tscn" id="4_0p2mk"]
+
+[sub_resource type="Gradient" id="Gradient_0bppc"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_smhrx"]
+gradient = SubResource("Gradient_0bppc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smhrx"]
+size = Vector2(192, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bppc"]
+size = Vector2(200, 200)
+
+[node name="Enemy" unique_id=1584016522 groups=["Enemy"] instance=ExtResource("1_jbe3p")]
+collision_layer = 2
+collision_mask = 10
+script = ExtResource("2_pmu85")
+attack_distance = 300.0
+
+[node name="TemporarySprite" type="Sprite2D" parent="." index="0" unique_id=1668161595]
+scale = Vector2(3, 3)
+texture = SubResource("GradientTexture2D_smhrx")
+
+[node name="Collision" parent="." index="1" unique_id=542843271]
+shape = SubResource("RectangleShape2D_smhrx")
+
+[node name="StateLabel" type="Label" parent="." index="2" unique_id=1056945993]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -152.5
+offset_right = 42.5
+offset_bottom = -103.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "state"
+horizontal_alignment = 1
+
+[node name="Hurtbox" parent="." index="3" unique_id=160118446 instance=ExtResource("4_0p2mk")]
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1952430233]
+shape = SubResource("RectangleShape2D_0bppc")

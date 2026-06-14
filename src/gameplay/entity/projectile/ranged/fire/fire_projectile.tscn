@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dvn1gxa4n3xde"]
+
+[ext_resource type="PackedScene" uid="uid://yg5jccm2on8s" path="res://src/core/superclass/projectiles/ranged_projectile.tscn" id="1_0e8yt"]
+[ext_resource type="Script" uid="uid://cm37i81o14ifi" path="res://src/gameplay/entity/projectile/ranged/fire/fire_projectile.gd" id="2_lks71"]
+
+[sub_resource type="Gradient" id="Gradient_v8od4"]
+offsets = PackedFloat32Array(0, 0.49733317, 0.9906665)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.64705884, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n67oq"]
+gradient = SubResource("Gradient_v8od4")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql7fe"]
+size = Vector2(48, 48)
+
+[node name="FireProjectile" unique_id=1584016522 instance=ExtResource("1_0e8yt")]
+script = ExtResource("2_lks71")
+antiheal_multiplier = 0.7
+burn_duration = 4.0
+burn_interval = 1.0
+burn_damage = 2.0
+burn_meta = "burn"
+antiheal_meta = "antiheal"
+
+[node name="TemporarySprite" type="Sprite2D" parent="." index="0" unique_id=2134947124]
+scale = Vector2(0.75, 0.75)
+texture = SubResource("GradientTexture2D_n67oq")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1129795298) index="0" unique_id=1276368311]
+shape = SubResource("RectangleShape2D_ql7fe")
