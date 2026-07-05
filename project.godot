@@ -16,9 +16,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]
 
-DifficultyManager="*uid://cbuh6ypygoej3"
-GameManager="*uid://b7ge34r60dctt"
-JoystickManager="*uid://bcunobblcu8ih"
+Game="*uid://b7ge34r60dctt"
 
 [debug]
 
@@ -37,7 +35,12 @@ window/name=""
 [file_customization]
 
 folder_colors={
-"res://src/debug/": "green"
+"res://assets/": "gray",
+"res://core/": "pink",
+"res://debug/": "green",
+"res://gameplay/": "red",
+"res://levels/": "teal",
+"res://ui/": "orange"
 }
 
 [input]

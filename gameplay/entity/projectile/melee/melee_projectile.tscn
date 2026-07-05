@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bai3c4r1pgowx"]
+
+[ext_resource type="PackedScene" uid="uid://dw42u442c08av" path="res://gameplay/entity/projectile/projectile.tscn" id="1_8i4qg"]
+[ext_resource type="Script" uid="uid://jd2y71c0x22c" path="res://gameplay/entity/projectile/melee/melee_projectile.gd" id="2_7nwxp"]
+
+[node name="MeleeProjectile" unique_id=1584016522 instance=ExtResource("1_8i4qg")]
+script = ExtResource("2_7nwxp")
