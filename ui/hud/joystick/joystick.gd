@@ -1,19 +1,18 @@
 class_name Joystick
 extends Control
-## Joystick superclass; handles input processing.
 
 
-## Joystick clamp value within the base.
 # 1.0 = stick can't get out of base
 # 2.0 = stick can get out of base halfway
 const JOYSTICK_MARGIN_CLEARANCE : float = 2.0
+const STICK_TIME_TO_RETURN : float = 0.1
 
 
 @export var has_cooldown : bool = false
-@export var click_area   : float = 256.0
+@export var click_area : float = 256.0
 
 
-var bounds : PackedVector2Array:
+var bounds : PackedVector2Array :
 	get:
 		if not bounds:
 			bounds = PackedVector2Array([
@@ -22,13 +21,14 @@ var bounds : PackedVector2Array:
 			])
 		return bounds
 
-var max_radius   : float = 0.0
+var max_radius : float = 0.0
 var stick_radius : float = 0.0
-var base_radius  : float = 0.0
+var base_radius : float = 0.0
 
 var default_pos : Vector2 = Vector2.ZERO
-var dir         : Vector2 = Vector2.ZERO
-var dragging    : bool = false
+var dir : Vector2 = Vector2.ZERO
+
+var dragging : bool = false
 
 var touch_index : int = 0
 
@@ -36,13 +36,13 @@ var touch_index : int = 0
 var in_cooldown : bool = false
 
 
-@onready var base           : Sprite2D = $Base
-@onready var stick          : Sprite2D = $Stick
+@onready var base : Sprite2D = $Base
+@onready var stick : Sprite2D = $Stick
 @onready var cooldown_timer : Timer = $CooldownTimer
 
 
 func _ready() -> void:
-	_setup()
+	_init_joystick()
 
 
 func _input(event : InputEvent) -> void:
@@ -66,21 +66,22 @@ func _input(event : InputEvent) -> void:
 
 
 #################################################################
-###                                                           ###
 ###                         PRIVATE                           ###
-###                                                           ###
 #################################################################
 
 
-func _control_joystick(pos: Vector2) -> void:
+func _control_joystick(pos : Vector2) -> void:
 	stick.global_position = pos
 	dir = stick.global_position - global_position
 
-	# Locks joystick (small circle in the middle) to the joybase (big circle)
-	# According to the value of max_radius
-	if stick.position.length() > max_radius:
-		stick.position = dir.normalized() * max_radius
-		stick.position = dir.normalized() * max_radius
+	# Locks joystick (small circle) to the joybase (big circle)
+	# according to the value of max_radius
+	stick.position = stick.position.clamp(
+		dir.normalized(), 
+		dir.normalized() * max_radius
+	)
+	#if stick.position.length() > max_radius:
+		#stick.position = dir.normalized() * max_radius
 
 
 func _reposition_joystick(pos : Vector2, pressed : bool) -> void:
@@ -97,7 +98,7 @@ func _release_joystick() -> void:
 		stick,
 		"position",
 		Vector2.ZERO,
-		0.1
+		STICK_TIME_TO_RETURN
 	).set_ease(
 		Tween.EASE_OUT).set_trans(
 			Tween.TRANS_EXPO)
@@ -120,7 +121,7 @@ func _in_click_area(pos : Vector2) -> bool:
 	)
 
 
-func _setup() -> void:
+func _init_joystick() -> void:
 	default_pos = global_position
 	base_radius = base.texture.get_width() / 2.0
 	stick_radius = stick.texture.get_width() / 2.0
@@ -128,9 +129,7 @@ func _setup() -> void:
 
 
 #################################################################
-###                                                           ###
 ###                          PUBLIC                           ###
-###                                                           ###
 #################################################################
 
 
@@ -147,9 +146,7 @@ func to_global(local : Vector2) -> Vector2:
 
 
 #################################################################
-###                                                           ###
 ###                         SIGNALS                           ###
-###                                                           ###
 #################################################################
 
 

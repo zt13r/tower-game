@@ -1,7 +1,8 @@
-class_name BasicAttackJoystick extends Joystick
+class_name BasicAttackJoystick
+extends Joystick
 
 
-@export var player : Player:
+@export var player : Player :
 	get:
 		if not player:
 			player = get_tree().get_first_node_in_group("Player")
@@ -21,25 +22,25 @@ func _control_joystick(pos : Vector2) -> void:
 	super(pos)
 
 	# Auto aim direction to the closest enemy
-	# if joystick is pressed and not directed.
+	# if joystick is pressed and not directed/aimed
 	if stick.position == Vector2.ZERO:
 		dir = _get_auto_aim_direction()
 
-	JoystickManager.basic_attack_joystick_direction = dir.normalized()
+	Game.basic_attack_joystick_direction = dir.normalized()
 
 
 func _release_joystick() -> void:
-	JoystickManager.last_basic_attack_joystick_direction = JoystickManager.basic_attack_joystick_direction
+	Game.last_basic_attack_joystick_direction = Game.basic_attack_joystick_direction
 
 	if not dragging:
 		return
 
-	JoystickManager.basic_attack_joystick_released = true
+	Game.basic_attack_joystick_released = true
 
 	await super()
 
-	JoystickManager.basic_attack_joystick_direction = Vector2.ZERO
-	JoystickManager.basic_attack_joystick_released = false
+	Game.basic_attack_joystick_direction = Vector2.ZERO
+	Game.basic_attack_joystick_released = false
 
 
 func _get_auto_aim_direction() -> Vector2:

@@ -1,4 +1,4 @@
-class_name DamageUtil
+class_name Util
 
 
 const PERCENT_TO_DECIMAL : float = 0.01

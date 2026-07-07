@@ -35,12 +35,12 @@ window/name=""
 [file_customization]
 
 folder_colors={
-"res://assets/": "gray",
+"res://assets/": "teal",
 "res://core/": "pink",
 "res://debug/": "green",
-"res://gameplay/": "red",
-"res://levels/": "teal",
-"res://ui/": "orange"
+"res://gameplay/": "orange",
+"res://story/": "purple",
+"res://ui/": "blue"
 }
 
 [input]

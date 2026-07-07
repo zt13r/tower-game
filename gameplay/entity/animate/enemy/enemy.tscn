@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b5p4d513nxmpl"]
 
 [ext_resource type="PackedScene" path="res://src/gameplay/entity/creature/creature.tscn" id="1_jbe3p"]
-[ext_resource type="Script" uid="uid://bculcchoe4wdu" path="res://gameplay/entity/life_entity/enemy/enemy.gd" id="2_pmu85"]
-[ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://gameplay/target_collision/hurtbox/hurtbox.tscn" id="4_0p2mk"]
+[ext_resource type="Script" uid="uid://bculcchoe4wdu" path="res://gameplay/entity/animate/enemy/enemy.gd" id="2_pmu85"]
+[ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://gameplay/components/hurtbox/hurtbox.tscn" id="4_0p2mk"]
 
 [sub_resource type="Gradient" id="Gradient_0bppc"]
 offsets = PackedFloat32Array(0)

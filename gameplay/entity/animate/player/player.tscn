@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://by8d1ms5l2esh"]
 
-[ext_resource type="Script" uid="uid://bwkvognnt3bxe" path="res://gameplay/entity/life_entity/player/player.gd" id="2_bksb7"]
-[ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://gameplay/target_collision/hurtbox/hurtbox.tscn" id="4_bgq54"]
+[ext_resource type="Script" uid="uid://bwkvognnt3bxe" path="res://gameplay/entity/animate/player/player.gd" id="2_bksb7"]
+[ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://gameplay/components/hurtbox/hurtbox.tscn" id="4_bgq54"]
 [ext_resource type="Script" uid="uid://dccv4eh7vlfs2" path="res://gameplay/kit/ability/fire.gd" id="5_wjhpj"]
 [ext_resource type="Script" uid="uid://dt0m3rvdpddyp" path="res://gameplay/kit/weapon/gun.gd" id="6_2iqu4"]
 [ext_resource type="PackedScene" uid="uid://btpkhaot7gad" path="res://gameplay/entity/projectile/ranged/bullet/bullet_projectile.tscn" id="6_l1jwt"]

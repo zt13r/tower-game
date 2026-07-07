@@ -115,11 +115,11 @@ func _draw() -> void:
 
 
 func _process(_delta : float) -> void:
-	move_dir = JoystickManager.move_joystick_direction
-	dashed = JoystickManager.dash_joystick_released
-	use_basic_attack = JoystickManager.basic_attack_joystick_released
-	use_skill_one = JoystickManager.skill_one_joystick_released
-	use_skill_two = JoystickManager.skill_two_joystick_released
+	move_dir = Game.move_joystick_direction
+	dashed = Game.dash_joystick_released
+	use_basic_attack = Game.basic_attack_joystick_released
+	use_skill_one = Game.skill_one_joystick_released
+	use_skill_two = Game.skill_two_joystick_released
 
 
 func _physics_process(delta : float) -> void:
@@ -159,12 +159,12 @@ func _physics_process(delta : float) -> void:
 		current_state = State.IDLE
 
 	# Hitmarker position
-	if JoystickManager.basic_attack_joystick_direction != Vector2.ZERO:
-		_set_hitmarker_position(JoystickManager.basic_attack_joystick_direction)
-	elif JoystickManager.skill_one_joystick_direction != Vector2.ZERO:
-		_set_hitmarker_position(JoystickManager.skill_one_joystick_direction)
-	elif JoystickManager.skill_two_joystick_direction != Vector2.ZERO:
-		_set_hitmarker_position(JoystickManager.skill_two_joystick_direction)
+	if Game.basic_attack_joystick_direction != Vector2.ZERO:
+		_set_hitmarker_position(Game.basic_attack_joystick_direction)
+	elif Game.skill_one_joystick_direction != Vector2.ZERO:
+		_set_hitmarker_position(Game.skill_one_joystick_direction)
+	elif Game.skill_two_joystick_direction != Vector2.ZERO:
+		_set_hitmarker_position(Game.skill_two_joystick_direction)
 
 	# Debug state
 	state_label.text = state_names.get(current_state)
@@ -173,9 +173,7 @@ func _physics_process(delta : float) -> void:
 
 
 #################################################################
-###                                                           ###
 ###                          STATES                           ###
-###                                                           ###
 #################################################################
 
 
@@ -193,7 +191,7 @@ func _process_start_dash() -> void:
 	dash_distance_remaining = dash_distance
 	dash_time_remaining = dash_duration
 
-	var dash_dir = JoystickManager.dash_joystick_direction
+	var dash_dir = Game.dash_joystick_direction
 	dash_target_point = dash_dir * dash_distance
 
 	dashing = true
@@ -250,9 +248,7 @@ func _process_using_skill_two() -> void:
 
 
 #################################################################
-###                                                           ###
 ###                         PRIVATE                           ###
-###                                                           ###
 #################################################################
 
 
@@ -294,13 +290,10 @@ func _set_hitmarker_position(pos : Vector2) -> void:
 
 
 #################################################################
-###                                                           ###
 ###                          PUBLIC                           ###
-###                                                           ###
 #################################################################
 
 
-## Returns the closest enemy from player within MAX_ENEMY_DISTANCE.
 func get_closest_enemy() -> Enemy:
 	var enemies := get_tree().get_nodes_in_group("Enemy")
 	var closest_enemy: Enemy = enemies[0]
@@ -312,21 +305,18 @@ func get_closest_enemy() -> Enemy:
 	return closest_enemy
 
 
-## Returns distance from the player to an enemy.
 func get_distance(enemy : Enemy) -> float:
 	return (enemy.global_position - global_position).length()
 
 
-## PLACEHOLDER: Changes player Kit.
+## PLACEHOLDER
 func swap_kit() -> void:
 	@warning_ignore("incompatible_ternary")
 	current_kit = weapon if current_kit == ability else ability
 
 
 #################################################################
-###                                                           ###
 ###                         SIGNALS                           ###
-###                                                           ###
 #################################################################
 
 

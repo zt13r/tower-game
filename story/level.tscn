@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://da4idlyrsxxji"]
+
+[ext_resource type="Script" uid="uid://bccvgphxgtxwg" path="res://gameplay/components/level_camera/level_camera.gd" id="1_i05tn"]
+[ext_resource type="Script" uid="uid://dthj1bbkfehoe" path="res://story/level.gd" id="1_kqko3"]
+
+[node name="Level" type="Node2D" unique_id=418487573]
+script = ExtResource("1_kqko3")
+
+[node name="Terrain" type="Node2D" parent="." unique_id=1963888834]
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=236116970]
+unique_name_in_owner = true
+
+[node name="LevelCamera" type="Camera2D" parent="." unique_id=544740139]
+unique_name_in_owner = true
+script = ExtResource("1_i05tn")
+metadata/_custom_type_script = "uid://bccvgphxgtxwg"
