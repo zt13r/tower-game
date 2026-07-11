@@ -7,7 +7,7 @@
 script = ExtResource("2_1c0qc")
 
 [node name="Base" parent="." index="1" unique_id=1569092746]
-self_modulate = Color(1, 0.64685506, 0, 0.35000002)
+self_modulate = Color(1, 1, 0, 0.35000002)
 
 [node name="Stick" parent="." index="2" unique_id=940205648]
-self_modulate = Color(1, 0.64705884, 0, 1)
+self_modulate = Color(1, 1, 0, 1)

@@ -1,3 +1,4 @@
+@abstract
 class_name Projectile
 extends Entity
 
@@ -7,8 +8,7 @@ var movement_speed : float = 0.0
 
 var direction : Vector2 = Vector2.ZERO
 
-var fired_by : LifeEntity = null
+var fired_by : Character = null
 
 
-func apply_hit_effect(target : LifeEntity) -> void:
-	pass
+@abstract func apply_hit_effect(target : Character) -> void

@@ -2,7 +2,7 @@ class_name Main
 extends Node
 
 
-const PLAYER_SCENE_UID : String = "uid://by8d1ms5l2esh"
+const PLAYER_SCENE_UID : String = "uid://(insert uid here)"
 
 
 var player : Player = null
@@ -89,6 +89,8 @@ func _init_ui() -> void:
 
 
 func _on_play_pressed() -> void:
+	menu_root.hide()
+
 	var level : int = Game.get_current_level()
 	var level_uid : String = Game.get_level_uid(level)
 	_load_level(level_uid)

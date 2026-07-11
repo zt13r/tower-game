@@ -2,20 +2,13 @@ class_name SkillOneJoystick
 extends Joystick
 
 
-@export var player : Player :
-	get:
-		if not player:
-			player = get_tree().get_first_node_in_group("Player")
-		return player
-
-
 func _ready() -> void:
 	super()
 	if player == null:
 		push_error("Player reference is null.")
 		set_process_input(false)
 		return
-	cooldown_timer.wait_time = player.skill_one_recharge_time
+	cooldown_timer.wait_time = player.skill_one_cooldown
 
 
 func _control_joystick(pos : Vector2) -> void:
@@ -26,21 +19,14 @@ func _control_joystick(pos : Vector2) -> void:
 	if stick.position == Vector2.ZERO:
 		dir = _get_auto_aim_direction()
 
-	Game.skill_one_joystick_direction = dir.normalized()
-
 
 func _release_joystick() -> void:
-	Game.last_skill_one_joystick_direction = Game.skill_one_joystick_direction
-
 	if not dragging:
 		return
 
-	Game.skill_one_joystick_released = true
+	JoystickHandler.skill_one_released.emit(dir)
 
 	await super()
-
-	Game.skill_one_joystick_direction = Vector2.ZERO
-	Game.skill_one_joystick_released = false
 
 
 func _get_auto_aim_direction() -> Vector2:

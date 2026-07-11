@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dbp6fklkosxqi"]
+
+[ext_resource type="PackedScene" uid="uid://dmg10bm1phw4u" path="res://ui/hud/joystick/joystick.tscn" id="1_ewd6q"]
+[ext_resource type="Script" uid="uid://cphwj5n6ejysc" path="res://ui/hud/joystick/attack/skill_three/skill_three_joystick.gd" id="2_evb8o"]
+
+[node name="SkillThreeJoystick" unique_id=1876497017 instance=ExtResource("1_ewd6q")]
+script = ExtResource("2_evb8o")
+
+[node name="Base" parent="." index="1" unique_id=1569092746]
+self_modulate = Color(1, 0, 0, 0.35000002)
+
+[node name="Stick" parent="." index="2" unique_id=940205648]
+self_modulate = Color(1, 0, 0, 1)

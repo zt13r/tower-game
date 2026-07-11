@@ -1,4 +1,4 @@
-class_name SkillTwoJoystick
+class_name SkillThreeJoystick
 extends Joystick
 
 
@@ -8,7 +8,7 @@ func _ready() -> void:
 		push_error("Player reference is null.")
 		set_process_input(false)
 		return
-	cooldown_timer.wait_time = player.skill_two_cooldown
+	cooldown_timer.wait_time = player.skill_three_cooldown
 
 
 func _control_joystick(pos : Vector2) -> void:
@@ -24,7 +24,7 @@ func _release_joystick() -> void:
 	if not dragging:
 		return
 
-	JoystickHandler.skill_two_released.emit(dir)
+	JoystickHandler.skill_three_released.emit(dir)
 
 	await super()
 

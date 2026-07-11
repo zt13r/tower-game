@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 [autoload]
 
 Game="*uid://b7ge34r60dctt"
+JoystickHandler="*uid://cuk6kqgpcaxjo"
+SaveLoad="*uid://dls5hb0mxi5h5"
 
 [debug]
 
@@ -24,8 +26,8 @@ gdscript/warnings/unused_parameter=0
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=854
+window/size/viewport_height=480
 window/size/window_width_override=640
 window/size/window_height_override=360
 window/stretch/mode="canvas_items"

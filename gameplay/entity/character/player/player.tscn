@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bpoucs5v8pn06"]
+
+[ext_resource type="Script" uid="uid://bwkvognnt3bxe" path="res://gameplay/entity/character/player/player.gd" id="2_bksb7"]
+[ext_resource type="Script" uid="uid://ctkkgm4mec4qp" path="res://gameplay/components/state_machine/state_machine.gd" id="2_eh4m8"]
+[ext_resource type="Texture2D" uid="uid://c4nlfa8lee5my" path="res://assets/art/character/1_head/head-probably.png" id="3_ep6ot"]
+[ext_resource type="PackedScene" uid="uid://d3fcyi7c2soig" path="res://gameplay/components/hurtbox/hurtbox.tscn" id="3_fgd57"]
+[ext_resource type="Texture2D" uid="uid://bc831v7tef5vi" path="res://assets/art/character/3_torso_inner/inner-probably.png" id="3_iw4po"]
+[ext_resource type="Texture2D" uid="uid://wnry1bp4a7p1" path="res://assets/art/character/2_torso_outer/outer-probably.png" id="4_1gx52"]
+[ext_resource type="Texture2D" uid="uid://c1ofgk6pthoy4" path="res://assets/art/character/0_hair/hair-probably.png" id="4_w7r01"]
+
+[sub_resource type="Animation" id="Animation_iw4po"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gx52"]
+_data = {
+&"idle": SubResource("Animation_iw4po")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgd57"]
+radius = 16.0
+height = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fgd57"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1484581774]
+script = ExtResource("2_bksb7")
+
+[node name="StateMachine" type="Node" parent="." unique_id=283730715]
+script = ExtResource("2_eh4m8")
+metadata/_custom_type_script = "uid://ctkkgm4mec4qp"
+
+[node name="Pivot" type="Node2D" parent="." unique_id=374117612]
+
+[node name="Sprite" type="Node2D" parent="Pivot" unique_id=307397069]
+
+[node name="RightLeg" type="Sprite2D" parent="Pivot/Sprite" unique_id=163356079]
+
+[node name="RightArm" type="Sprite2D" parent="Pivot/Sprite" unique_id=197697634]
+
+[node name="LeftLeg" type="Sprite2D" parent="Pivot/Sprite" unique_id=1709063457]
+
+[node name="LeftArm" type="Sprite2D" parent="Pivot/Sprite" unique_id=453697263]
+
+[node name="Torso" type="Node2D" parent="Pivot/Sprite" unique_id=1755316390]
+
+[node name="TorsoInner" type="Sprite2D" parent="Pivot/Sprite/Torso" unique_id=289426838]
+position = Vector2(0, 22)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_iw4po")
+
+[node name="TorsoOuter" type="Sprite2D" parent="Pivot/Sprite/Torso" unique_id=1437139171]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 22)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_1gx52")
+
+[node name="Head" type="Node2D" parent="Pivot/Sprite" unique_id=68411407]
+
+[node name="Head" type="Sprite2D" parent="Pivot/Sprite/Head" unique_id=1582869782]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_ep6ot")
+
+[node name="Hair" type="Sprite2D" parent="Pivot/Sprite/Head" unique_id=1005999938]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_w7r01")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/Sprite" unique_id=423620576]
+libraries/ = SubResource("AnimationLibrary_1gx52")
+
+[node name="Hurtbox" parent="Pivot" unique_id=160118446 node_paths=PackedStringArray("actor") instance=ExtResource("3_fgd57")]
+actor = NodePath("../..")
+
+[node name="Collision" type="CollisionShape2D" parent="Pivot/Hurtbox" unique_id=409497298]
+visible = false
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_fgd57")
+debug_color = Color(0, 1, 0, 0.42000002)
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2057015517]
+visible = false
+position = Vector2(0, 24)
+shape = SubResource("CircleShape2D_fgd57")

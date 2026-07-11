@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://dp873nisil4jd" path="res://core/main/main.gd" id="1_qctb3"]
 [ext_resource type="PackedScene" uid="uid://2njfptlxeogb" path="res://ui/hud/joystick/move/move_joystick.tscn" id="2_5alkf"]
 [ext_resource type="PackedScene" uid="uid://bbgwghw3gnl5f" path="res://ui/hud/joystick/dash/dash_joystick.tscn" id="3_vxc0a"]
-[ext_resource type="PackedScene" uid="uid://btlu3iodsdf2h" path="res://ui/hud/joystick/attack/basic/basic_attack_joystick.tscn" id="4_xwlw8"]
+[ext_resource type="PackedScene" uid="uid://btlu3iodsdf2h" path="res://ui/hud/joystick/attack/primary/primary_joystick.tscn" id="4_xwlw8"]
 [ext_resource type="PackedScene" uid="uid://dvwo8eldjhopa" path="res://ui/hud/joystick/attack/skill_one/skill_one_joystick.tscn" id="5_v0ilk"]
 [ext_resource type="PackedScene" uid="uid://cxj6aj2d55qgo" path="res://ui/hud/joystick/attack/skill_two/skill_two_joystick.tscn" id="6_4dl4c"]
+[ext_resource type="PackedScene" uid="uid://dbp6fklkosxqi" path="res://ui/hud/joystick/attack/skill_three/skill_three_joystick.tscn" id="7_5alkf"]
 [ext_resource type="Script" uid="uid://dbupje5dnbyuv" path="res://debug/temp_swap_kit_button.gd" id="7_lkm43"]
 
 [node name="Main" type="Node" unique_id=2061742658]
@@ -34,10 +35,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MoveJoystick" parent="HudLayer/HudRoot" unique_id=1104781509 instance=ExtResource("2_5alkf")]
+[node name="Joysticks" type="Control" parent="HudLayer/HudRoot" unique_id=2141169887]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoveJoystick" parent="HudLayer/HudRoot/Joysticks" unique_id=1104781509 instance=ExtResource("2_5alkf")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -49,67 +58,89 @@ offset_bottom = -240.0
 grow_vertical = 0
 size_flags_horizontal = 3
 
-[node name="DashJoystick" parent="HudLayer/HudRoot" unique_id=374660230 instance=ExtResource("3_vxc0a")]
+[node name="DashJoystick" parent="HudLayer/HudRoot/Joysticks" unique_id=374660230 instance=ExtResource("3_vxc0a")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -448.0
-offset_top = -184.0
-offset_right = -448.0
-offset_bottom = -184.0
+offset_left = -437.0
+offset_top = -149.0
+offset_right = -437.0
+offset_bottom = -149.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 click_area = 128.0
 
-[node name="BasicAttackJoystick" parent="HudLayer/HudRoot" unique_id=1876497017 instance=ExtResource("4_xwlw8")]
+[node name="PrimaryJoystick" parent="HudLayer/HudRoot/Joysticks" unique_id=1876497017 instance=ExtResource("4_xwlw8")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -208.0
-offset_top = -216.0
-offset_right = -208.0
-offset_bottom = -216.0
+offset_left = -224.00012
+offset_top = -216.00006
+offset_right = -224.00012
+offset_bottom = -216.00006
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.85, 0.85)
 click_area = 128.0
 
-[node name="SkillOneJoystick" parent="HudLayer/HudRoot" unique_id=1565433447 instance=ExtResource("5_v0ilk")]
+[node name="SkillOneJoystick" parent="HudLayer/HudRoot/Joysticks" unique_id=1565433447 instance=ExtResource("5_v0ilk")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -367.0
-offset_top = -375.0
-offset_right = -367.0
-offset_bottom = -375.0
+offset_left = -424.0
+offset_top = -313.0
+offset_right = -424.0
+offset_bottom = -313.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 has_cooldown = true
 click_area = 128.0
 
-[node name="SkillTwoJoystick" parent="HudLayer/HudRoot" unique_id=1873347229 instance=ExtResource("6_4dl4c")]
+[node name="SkillTwoJoystick" parent="HudLayer/HudRoot/Joysticks" unique_id=1873347229 instance=ExtResource("6_4dl4c")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -201.0
-offset_top = -430.0
-offset_right = -201.0
-offset_bottom = -430.0
+offset_left = -303.0
+offset_top = -423.0
+offset_right = -303.0
+offset_bottom = -423.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+has_cooldown = true
+click_area = 128.0
+
+[node name="SkillThreeJoystick" parent="HudLayer/HudRoot/Joysticks" unique_id=883650069 instance=ExtResource("7_5alkf")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -432.0
+offset_right = -147.0
+offset_bottom = -432.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)

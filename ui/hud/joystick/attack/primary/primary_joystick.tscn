@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://btlu3iodsdf2h"]
+
+[ext_resource type="PackedScene" uid="uid://dmg10bm1phw4u" path="res://ui/hud/joystick/joystick.tscn" id="1_ovvwj"]
+[ext_resource type="Script" uid="uid://b0jv46ieneheu" path="res://ui/hud/joystick/attack/primary/primary_joystick.gd" id="2_mil1s"]
+
+[node name="PrimaryJoystick" unique_id=1876497017 instance=ExtResource("1_ovvwj")]
+script = ExtResource("2_mil1s")
+has_cooldown = true
+
+[node name="Base" parent="." index="1" unique_id=1569092746]
+self_modulate = Color(0.62782896, 0.12315822, 0.94100165, 0.35000002)
+
+[node name="Stick" parent="." index="2" unique_id=940205648]
+self_modulate = Color(0.627451, 0.1254902, 0.9411765, 1)

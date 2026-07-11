@@ -5,8 +5,15 @@ extends Control
 # 1.0 = stick can't get out of base
 # 2.0 = stick can get out of base halfway
 const JOYSTICK_MARGIN_CLEARANCE : float = 2.0
+
 const STICK_TIME_TO_RETURN : float = 0.1
 
+
+@export var player : Player :
+	get:
+		if not player:
+			player = get_tree().get_first_node_in_group("Player")
+		return player
 
 @export var has_cooldown : bool = false
 @export var click_area : float = 256.0
@@ -38,6 +45,7 @@ var in_cooldown : bool = false
 
 @onready var base : Sprite2D = $Base
 @onready var stick : Sprite2D = $Stick
+
 @onready var cooldown_timer : Timer = $CooldownTimer
 
 

@@ -1,0 +1,64 @@
+class_name StateMachine
+extends Node
+
+
+@export var initial_state : State = null
+
+
+var states : Dictionary[String, State] = {}
+
+var current_state : State = null
+
+var character : Character :
+	get:
+		return get_parent() as Entity
+
+
+func _ready() -> void:
+	_init_states()
+
+
+func _process(_delta : float) -> void:
+	if current_state != null:
+		current_state.process()
+
+
+func _physics_process(_delta : float) -> void:
+	if current_state != null:
+		current_state.physics_process()
+
+
+func _init_states() -> void:
+	# Add state nodes to local "states" dictionary
+	for child in get_children():
+		if child is State:
+			states[child.name.to_lower()] = child
+			child.connect("state_changed", _on_state_changed)
+
+	# Set initial state
+	if initial_state != null:
+		current_state = initial_state
+		current_state.enter()
+	else:
+		if states.has("idle"):
+			current_state = states.get("idle")
+		else:
+			push_error("%s StateMachine has no idle state." % character.name)
+			return
+
+
+func _on_state_changed(before : State, new_state_name : String) -> void:
+	if current_state != before:
+		return
+
+	var new_state : State = states.get(new_state_name.to_lower())
+	if new_state == null:
+		push_error("State doesn't exist: ", new_state_name)
+		return
+
+	current_state.exit()
+	new_state.enter()
+
+	print(current_state.name, " -> ", new_state.name)
+
+	current_state = new_state

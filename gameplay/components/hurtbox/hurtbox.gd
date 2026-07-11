@@ -1,8 +1,10 @@
-class_name Hurtbox extends Area2D
+class_name Hurtbox
+extends Area2D
 
 
-@export var actor: Entity:
+@export var actor : Entity :
 	get:
 		if not actor:
-			actor = get_parent()
+			# Assuming parent is Pivot, and Pivot's parent is Entity
+			actor = get_parent().get_parent()
 		return actor
